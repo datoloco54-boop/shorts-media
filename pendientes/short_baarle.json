@@ -2,13 +2,34 @@
   "youtube": {
     "titulo": "Aquí tu puerta decide tu país. ¿Dónde? 🚪 #shorts",
     "descripcion": "En este pueblo la frontera cruza calles, terrazas y casas… y el país de tu casa lo decide la puerta.\n¿Lo adivinaste antes de que lo dijera? Responde sí o no 👇\n\nFuentes:\n- Gemeente Baarle-Nassau (ayuntamiento): https://www.baarle-nassau.nl/\n- Focus on Belgium (Gobierno federal de Bélgica), «A beer at the bar in Belgium, to the toilet in the Netherlands»: https://focusonbelgium.be/en/facts/beer-bar-belgium-toilet-netherlands\n- Atlas Obscura, The Migrating House in Baarle-Hertog: https://www.atlasobscura.com/places/voordeurwissel\n- Atlas Obscura, Borders of Baarle-Nassau and Baarle-Hertog: https://www.atlasobscura.com/places/borders-of-baarlenassau-and-baarlehertog\n- Dutch Genealogy, The Bizarre Borders of Baarle: https://dutchgenealogy.nl/the-bizarre-borders-of-baarle\n\n#datoscuriosos #datoloco #fronteras #belgica #paisesbajos",
-    "tags": ["datos curiosos", "dato loco", "Baarle", "Baarle-Hertog", "Baarle-Nassau", "Bélgica", "Países Bajos", "fronteras", "enclaves", "lugares insólitos", "geografía", "curiosidades", "shorts"],
+    "tags": [
+      "datos curiosos",
+      "dato loco",
+      "Baarle",
+      "Baarle-Hertog",
+      "Baarle-Nassau",
+      "Bélgica",
+      "Países Bajos",
+      "fronteras",
+      "enclaves",
+      "lugares insólitos",
+      "geografía",
+      "curiosidades",
+      "shorts"
+    ],
     "comentario_fijado": "¿Acertaste el sitio antes de que lo dijera? Sé sincero 👇"
   },
   "tiktok": {
     "caption": "¿De qué país es esta casa? 🚪 Adivina dónde antes del final.",
-    "hashtags": ["#datoscuriosos", "#datoloco", "#fronteras", "#geografia"],
+    "hashtags": [
+      "#datoscuriosos",
+      "#datoloco",
+      "#fronteras",
+      "#geografia"
+    ],
     "comentario_fijado": "Si te mudaras aquí, ¿pondrías la puerta en Bélgica o en Países Bajos? 👇"
   },
-  "contenido_sintetico": true
+  "contenido_sintetico": true,
+  "publicar_en": "2026-11-05T13:00",
+  "hora_tiktok": "13:30"
 }

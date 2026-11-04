@@ -2,15 +2,34 @@
   "youtube": {
     "titulo": "Aquí el atardecer es azul. ¿Dónde? 🌅 #shorts",
     "descripcion": "De día, el cielo es rojizo… y al atardecer, el sol se rodea de azul. Justo al revés que en la Tierra.\n¿Adivinaste dónde antes de que lo dijera? 👇\n\nEs Marte. Su polvo, muy fino, deja pasar algo mejor la luz azul, y el azul que se dispersa se queda cerca de la dirección del sol; por eso se nota sobre todo al atardecer, cuando la luz atraviesa más atmósfera (Mark Lemmon, equipo de Curiosity). El robot Curiosity lo fotografió en el cráter Gale el 15 de abril de 2015.\nFuentes:\n- NASA/JPL Photojournal, «Sunset in Mars' Gale Crater» (PIA19400): https://photojournal.jpl.nasa.gov/catalog/PIA19400\n- Spaceflight Now, «Curiosity rover sees blue on the red planet» (2015): https://spaceflightnow.com/2015/05/11/curiosity-rover-sees-blue-on-the-red-planet/\n- Live Science, «Curiosity Rover Sees Stunning Blue-Tinted Sunset on Mars»: https://livescience.com/50829-mars-blue-sunset-curiosity-rover-video.html\n- AmericaSpace, «Curiosity Sees Blue Sunset on Red Planet»: https://www.americaspace.com/2015/05/15/curiosity-sees-blue-sunset-on-red-planet/\n\n#datoscuriosos #espacio #marte #datoloco #curiosidades",
-    "tags": ["datos curiosos", "dato loco", "Marte", "atardecer azul", "Curiosity", "NASA", "espacio", "astronomía", "planeta rojo", "cráter Gale", "ciencia", "curiosidades", "shorts"],
+    "tags": [
+      "datos curiosos",
+      "dato loco",
+      "Marte",
+      "atardecer azul",
+      "Curiosity",
+      "NASA",
+      "espacio",
+      "astronomía",
+      "planeta rojo",
+      "cráter Gale",
+      "ciencia",
+      "curiosidades",
+      "shorts"
+    ],
     "comentario_fijado": "¿Adivinaste el planeta antes de que lo dijera? Sé sincero 👇"
   },
   "tiktok": {
     "caption": "¿Dónde el cielo es rojizo de día y el atardecer es azul? 🌅 Adivina antes del final.",
-    "hashtags": ["#datoscuriosos", "#espacio", "#marte", "#datoloco"],
+    "hashtags": [
+      "#datoscuriosos",
+      "#espacio",
+      "#marte",
+      "#datoloco"
+    ],
     "comentario_fijado": "¿Irías a Marte solo para ver un atardecer azul? Sí / no 👇"
   },
   "contenido_sintetico": true,
-  "publicar_en": "2026-11-06T13:00",
-  "hora_tiktok": "13:30"
+  "publicar_en": "2026-11-06T19:30",
+  "hora_tiktok": "20:00"
 }

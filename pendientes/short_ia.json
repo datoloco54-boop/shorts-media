@@ -1,0 +1,35 @@
+{
+  "youtube": {
+    "titulo": "Este vídeo no lo ha grabado nadie. ¿Cómo se hizo? 🤖 #shorts",
+    "descripcion": "Sin cámara, sin actores y sin micrófono: este Short lo ha hecho una IA, de principio a fin.\n¿Lo adivinaste antes de que lo dijera? Responde sí o no 👇\n\nCómo se hace, paso a paso (es el proceso real de este canal):\n1. Una IA elige un dato y lo comprueba con al menos dos fuentes, una oficial.\n2. Escribe un guion de menos de 30 segundos.\n3. Una voz sintética lo lee (Kokoro, un modelo abierto de texto a voz de 82 millones de parámetros).\n4. Cada fotograma se dibuja con código en Python: 30 dibujos por segundo, en vertical 1080x1920.\n5. Se monta con música y efectos también generados por código, y se marca como contenido sintético al subirlo.\n\nFuentes:\n- Kokoro-82M, ficha del modelo (Hugging Face): https://huggingface.co/hexgrad/Kokoro-82M\n- kokoro-onnx, código y modelos usados para la voz (GitHub): https://github.com/thewh1teagle/kokoro-onnx\n- YouTube, divulgación de contenido alterado o sintético: https://support.google.com/youtube/answer/14328491\n\n#inteligenciaartificial #ia #datoscuriosos #datoloco #shorts",
+    "tags": [
+      "inteligencia artificial",
+      "IA",
+      "vídeos con IA",
+      "cómo hacer vídeos con IA",
+      "voz sintética",
+      "programación",
+      "Python",
+      "animación con código",
+      "datos curiosos",
+      "dato loco",
+      "curiosidades",
+      "tecnología",
+      "shorts"
+    ],
+    "comentario_fijado": "¿Te habías dado cuenta de que era IA antes del final? Sé sincero 👇"
+  },
+  "tiktok": {
+    "caption": "¿Cómo se hizo este vídeo? 🤖 Sin cámara, sin actores y sin micro. Adivínalo antes del final.",
+    "hashtags": [
+      "#inteligenciaartificial",
+      "#ia",
+      "#datoscuriosos",
+      "#datoloco"
+    ],
+    "comentario_fijado": "¿Verías un canal hecho 100 % con IA si te enseña sus fuentes? Sí o no 👇"
+  },
+  "contenido_sintetico": true,
+  "publicar_en": "2026-11-07T13:00",
+  "hora_tiktok": "13:30"
+}

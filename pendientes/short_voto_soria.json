@@ -1,4 +1,5 @@
 {
+  "creado": "2026-11-04T13:26",
   "youtube": {
     "titulo": "Tu voto no vale igual en España. ¿Dónde? 🗳️ #shorts",
     "descripcion": "Cada provincia tiene 2 diputados fijos por ley y el resto va por población. Resultado: en Soria hay un diputado por cada ~45.000 habitantes; en Madrid, por más de 180.000.\n¿Acertaste la provincia antes de que la dijera? 👇\n\nDatos a 4 de noviembre de 2026 (elecciones generales del 29 de noviembre). Habitantes por diputado = población oficial a 1-ene-2025 ÷ diputados del decreto.\nFuentes:\n- LOREG (Ley Orgánica 5/1985), art. 162, BOE: https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672\n- Real Decreto 806/2026 de convocatoria, anexo de diputados (Soria 2, Madrid 38): https://www.lamoncloa.gob.es/consejodeministros/referencias/Paginas/2026/20261005-referencia-convocatoria-elecciones.aspx\n- Real Decreto 1117/2025, cifras oficiales de población a 1-ene-2025 (BOE): https://www.boe.es/buscar/doc.php?id=BOE-A-2025-25362\n- El Mirón de Soria, población oficial de la provincia (90.234): https://elmirondesoria.es/soria/capital/el-ine-certifica-poblacion-oficial-de-soria-en-2025-90-234-habiantes\n- El Constitucional, por qué Madrid elige 38 y otras provincias 2: https://www.elconstitucional.es/es/vivir-mejor/por-madrid-elige-38-diputados-otras-provincias-solo-dos-se-reparten-escanos-entre-provincias_9455_102.html\n\n#elecciones29N #datoscuriosos #datoloco #soria #curiosidades",
@@ -30,6 +31,6 @@
     "comentario_fijado": "¿Cuántos diputados elige tu provincia? Responde con un número 👇"
   },
   "contenido_sintetico": true,
-  "publicar_en": "2026-11-14T19:30",
-  "caduca": "2026-11-29"
+  "caduca": "2026-11-29",
+  "no_antes": "2026-11-14"
 }

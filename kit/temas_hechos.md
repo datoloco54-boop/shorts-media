@@ -7,7 +7,8 @@ Al crear un short nuevo, añade su línea aquí en el mismo commit, con `[aleato
 ## Publicados antes de que existiera `pendientes/`
 - isla_faisanes — Isla de los Faisanes: cambia de país (España/Francia) cada 6 meses
 - venus_dia — En Venus un día dura más que un año
-<!-- Faltan los demás vídeos publicados antes de `pendientes/`: añádelos aquí -->
+- arboles_estrellas — Hay más árboles en la Tierra que estrellas en la Vía Láctea
+- bacterias_celulas — En tu cuerpo hay más bacterias que células
 
 ## Creados con `pendientes/` (desde 2026-11-04)
 - wombat — El wombat hace caca en cubos

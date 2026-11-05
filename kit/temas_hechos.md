@@ -28,3 +28,4 @@ Al crear un short nuevo, añade su línea aquí en el mismo commit, con `[aleato
 - huella_koala — Las huellas dactilares del koala
 - lago_natron — Lago Natron: los animales se vuelven piedra
 - arbol_tenere — El árbol del Teneré, atropellado en el desierto
+- bola_gomas — La bola de gomas más grande del mundo (Detroit, 5.251 kg, Guinness nov-2026) [actualidad]

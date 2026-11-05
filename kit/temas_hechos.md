@@ -2,7 +2,7 @@
 
 Antes de proponer temas, mira esta lista **y** la carpeta `pendientes/`.
 Cuando un vídeo se publica y sale de `pendientes/`, su tema **se queda aquí**.
-Al crear un short nuevo, añade su línea aquí en el mismo commit.
+Al crear un short nuevo, añade su línea aquí en el mismo commit, con `[aleatorio]` o `[actualidad]` al final.
 
 ## Publicados antes de que existiera `pendientes/`
 - isla_faisanes — Isla de los Faisanes: cambia de país (España/Francia) cada 6 meses

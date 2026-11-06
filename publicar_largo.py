@@ -20,6 +20,11 @@ PREPARACIÓN (una vez)
      python3 publicar_largo.py auth-youtube (abre el navegador y lo guarda solo).
   2. Python 3.8 o más nuevo (Windows, Mac o Linux). Nada que instalar. No necesita publicar_movil.py.
 
+ACTUALIZACIÓN AUTOMÁTICA (v1.6)
+  Al arrancar mira si en la rama «largos» del repo hay un publicar_largo.py con un número de versión más alto. Si lo hay,
+  se descarga, comprueba que es un script válido, guarda el viejo como publicar_largo.anterior.py y arranca con el nuevo.
+  Para desactivarlo: "auto_actualizar": false en config.json.
+
 USO
   python3 publicar_largo.py            abre el PANEL en el navegador (igual que el del móvil)
   python3 publicar_largo.py estado     lo mismo en texto
@@ -50,7 +55,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 
-VERSION = "1.5"
+VERSION = "1.6"
 RAMA = "largos"            # v1.5: rama del repo con una carpeta por vídeo (lo que deja el kit; no hace falta Releases)
 ESTADO = os.path.join(AQUI, "largos_estado.json")
 CARPETA = os.path.join(AQUI, "largos")
@@ -718,7 +723,39 @@ def prueba():
     os.makedirs(ENTRADA, exist_ok=True); print("Carpeta para vídeos que te lleguen por el chat:", ENTRADA)
     print("Todo listo: abre el panel con  python3 publicar_largo.py" if bien else "Arregla lo de arriba y repite la prueba.")
 
+def _ver(v): return tuple(int(x) for x in str(v).split(".") if x.isdigit())
+
+def auto_actualizar():
+    """Si la rama «largos» del repo trae una versión más nueva de este script, la instala y vuelve a arrancar."""
+    cfg = cfg_actual()
+    if cfg.get("auto_actualizar") is False or os.environ.get("PUBLICAR_LARGO_ACTUALIZADO"): return
+    repo = cfg.get("github_repo", "")
+    if not repo or "TU_USUARIO" in repo: return
+    url = f"https://raw.githubusercontent.com/{repo}/{RAMA}/publicar_largo.py"
+    try:
+        if M.usar_curl:
+            r = subprocess.run([_curl(), "-sSL", "--fail", "--max-time", "20", url], capture_output=True)
+            if r.returncode != 0: return
+            nuevo = r.stdout
+        else:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": M.UA}), timeout=20) as r: nuevo = r.read()
+        txt = nuevo.decode("utf-8")
+        v = next((l.split("=")[1].strip().strip('"') for l in txt.splitlines() if l.startswith("VERSION =")), "")
+        if not v or _ver(v) <= _ver(VERSION): return
+        compile(txt, "publicar_largo.py", "exec")                       # que sea un script válido antes de tocar nada
+    except Exception:
+        return                                                          # sin conexión o raro: sigue con la versión actual
+    yo = os.path.abspath(__file__)
+    shutil.copy2(yo, os.path.join(AQUI, "publicar_largo.anterior.py"))
+    tmp = yo + ".nuevo"
+    with open(tmp, "wb") as f: f.write(nuevo)
+    os.replace(tmp, yo)
+    print(f"publicar_largo.py actualizado: {VERSION} → {v} (el anterior queda en publicar_largo.anterior.py)")
+    os.environ["PUBLICAR_LARGO_ACTUALIZADO"] = "1"
+    sys.exit(subprocess.call([sys.executable, yo] + sys.argv[1:]))
+
 if __name__ == "__main__":
+    auto_actualizar()
     cmd = sys.argv[1] if len(sys.argv) > 1 else "web"
     {"borrar": lambda: (print(borrar(cfg_actual(), sys.argv[2], "--archivos" in sys.argv)) if len(sys.argv) > 2 else print("Uso: python3 publicar_largo.py borrar <nombre> [--archivos]")),
      "web": web, "estado": texto, "prueba": prueba, "auth-youtube": lambda: _M.auth_youtube(cfg_actual())}.get(cmd, lambda: print(__doc__))()

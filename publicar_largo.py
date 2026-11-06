@@ -731,14 +731,15 @@ def auto_actualizar():
     if cfg.get("auto_actualizar") is False or os.environ.get("PUBLICAR_LARGO_ACTUALIZADO"): return
     repo = cfg.get("github_repo", "")
     if not repo or "TU_USUARIO" in repo: return
-    url = f"https://raw.githubusercontent.com/{repo}/{RAMA}/publicar_largo.py"
+    url = f"https://api.github.com/repos/{repo}/contents/publicar_largo.py?ref={RAMA}"     # la API no tiene la caché de 5 min de raw
+    h = {"User-Agent": M.UA, "Accept": "application/vnd.github.raw"}
     try:
         if M.usar_curl:
-            r = subprocess.run([_curl(), "-sSL", "--fail", "--max-time", "20", url], capture_output=True)
+            r = subprocess.run([_curl(), "-sSL", "--fail", "--max-time", "20", "-H", "Accept: " + h["Accept"], "-A", M.UA, url], capture_output=True)
             if r.returncode != 0: return
             nuevo = r.stdout
         else:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": M.UA}), timeout=20) as r: nuevo = r.read()
+            with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=20) as r: nuevo = r.read()
         txt = nuevo.decode("utf-8")
         v = next((l.split("=")[1].strip().strip('"') for l in txt.splitlines() if l.startswith("VERSION =")), "")
         if not v or _ver(v) <= _ver(VERSION): return

@@ -29,6 +29,7 @@ AMARILLO = {"BOTÓN", "ANTIVECINOS", "CORRE", "APRIETAS", "ESPERA", "FUERTE", "S
             "REAL", "RUEDAS", "ACORTA", "BOMBEROS", "CORRER"}
 DICHO = {"«": "", "»": ""}
 PRIMER_CORTE = lambda k: k.at(0, 6)                          # corte en «botón»
+MUSICA = 0.09                                                  # base más presente (Jesús, 23-nov-2026; antes 0.05)
 PREGUNTA = "¿Tú aprietas cerrar o abrir?"
 W_, H_ = 1080, 1920
 ORO = (255, 205, 50)

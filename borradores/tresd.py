@@ -634,7 +634,7 @@ def cronometro(r=0.16, col=(255, 205, 50), emis=0.6):
     o.DS = [True] * len(o.DS); o._fin = None
     return o
 
-def cocina(dia=0.8, puerta=0.0, luz=1.0, suelo_col=((238, 232, 220), (60, 150, 160))):
+def cocina(dia=0.8, puerta=0.0, luz=1.0, suelo_col=((238, 232, 220), (60, 150, 160)), nevera=True):
     """Cocina de 6 x 6 m vista desde -z (misma planta que dormitorio()): suelo de baldosas a cuadros, encimera con
     muebles al fondo, ventana, nevera a la derecha, lámpara colgante y puerta en la pared derecha (puerta 0..1)."""
     u = clamp(dia)
@@ -679,7 +679,7 @@ def cocina(dia=0.8, puerta=0.0, luz=1.0, suelo_col=((238, 232, 220), (60, 150, 1
     nev = caja(0.9, 2.0, 0.75, (236, 240, 246), cols=dict(top=(210, 214, 222)))
     nev.cara([(-0.43, 1.25, -0.38), (0.43, 1.25, -0.38), (0.43, 1.27, -0.38), (-0.43, 1.27, -0.38)], (170, 176, 190), bias=1, ds=True)
     for y0, y1 in ((0.5, 1.1), (1.4, 1.8)): nev.cara([(0.3, y0, -0.385), (0.34, y0, -0.385), (0.34, y1, -0.385), (0.3, y1, -0.385)], (150, 156, 170), bias=2, ds=True)
-    e.pon(nev, pos=(2.4, 0, 2.55))
+    if nevera: e.pon(nev, pos=(2.4, 0, 2.55))              # nevera=False para poner nevera_abierta() en su sitio
     e.pon(cilindro(0.01, 0.7, (40, 40, 50), n=4), pos=(-0.3, 2.5, 0.9))                       # lámpara colgante
     e.pon(cilindro(0.3, 0.25, (255, 214, 120), n=10, r1=0.08, emis=1.0 * luz), pos=(-0.3, 2.3, 0.9))
     if luz > 0.05: e.halo((-0.3, 2.3, 0.9), (255, 210, 130), 0.5, 0.45 * luz)
@@ -1093,3 +1093,63 @@ def pon_rellano(e, obj, pos, yaw=0.0, esc=1.0):
     """Mete algo en el rellano con el orden correcto según la cámara."""
     if getattr(e, "dentro", False): e.pon(obj, pos=pos, yaw=yaw, esc=esc, capa=0, orden=90)
     else: e.pon(obj, pos=pos, yaw=yaw, esc=esc)
+
+
+# ------------------------------------------------------------------ comedor y nevera (v1.9, 23-nov-2026)
+def mesa_comedor(w=1.6, d=0.9, col=(176, 124, 84), mantel=(240, 236, 226)):
+    """Mesa de comedor (tapa a 0,75 m) con mantel. Origen = centro, en el suelo."""
+    o = caja(w, 0.05, d, col, y0=0.72)
+    for sx in (-1, 1):
+        for sz in (-1, 1): o.une(caja(0.07, 0.72, 0.07, tuple(int(c * 0.8) for c in col)), pos=(sx * (w / 2 - 0.08), 0, sz * (d / 2 - 0.08)))
+    o.cara([(-w / 2 + 0.1, 0.772, -d / 2 + 0.05), (-w / 2 + 0.1, 0.772, d / 2 - 0.05), (w / 2 - 0.1, 0.772, d / 2 - 0.05), (w / 2 - 0.1, 0.772, -d / 2 + 0.05)], mantel, bias=1, ds=True)
+    return o
+
+def plato(lleno=1.0, comida=(230, 150, 60), r=0.13):
+    """Plato hondo; lleno 0..1 = cuánta comida queda (0 = vacío)."""
+    o = cilindro(r, 0.03, (250, 250, 252), n=12, r1=r * 1.25)
+    if lleno > 0.02: o.une(cilindro(r * 0.95 * (0.5 + 0.5 * lleno), 0.012, comida, n=12), pos=(0, 0.024, 0))
+    return o
+
+def vaso(lleno=0.0, col=(250, 250, 250), r=0.04, h=0.12):
+    o = cilindro(r, h, (200, 220, 240), n=10, r1=r * 1.15, alfa=110, tapas=False); o.DS = [True] * len(o.DS); o._fin = None
+    if lleno > 0.01: o.une(cilindro(r * 0.95, h * lleno, col, n=10, r1=r * (0.95 + 0.15 * lleno)), pos=(0, 0.003, 0))
+    return o
+
+def brik(col=(60, 140, 230), h=0.25, w=0.09):
+    """Envase de cartón (leche) con tejadillo. Origen = base."""
+    o = caja(w, h, w, (248, 248, 250), cols=dict(front=col, back=col))
+    o.une(tcaja(w, w, w, 0.01, 0.05, (236, 236, 240), y0=h))
+    o.cara([(-w / 2, h * 0.35, -w / 2 - 0.002), (w / 2, h * 0.35, -w / 2 - 0.002), (w / 2, h * 0.7, -w / 2 - 0.002), (-w / 2, h * 0.7, -w / 2 - 0.002)], col, bias=1, ds=True)
+    return o
+
+def botella(col=(220, 60, 60), h=0.3, r=0.045, liquido=0.0):
+    """Botella de refresco (PET) con etiqueta; liquido 0..1."""
+    o = cilindro(r, h * 0.7, (180, 200, 190), n=10, alfa=150, tapas=False); o.DS = [True] * len(o.DS); o._fin = None
+    o.une(cilindro(r, h * 0.25, (180, 200, 190), n=10, r1=r * 0.35, y0=h * 0.7, alfa=150, tapas=False))
+    o.une(cilindro(r * 1.01, h * 0.18, col, n=10, tapas=False), pos=(0, h * 0.3, 0))
+    o.une(cilindro(r * 0.4, 0.03, (240, 240, 245), n=8), pos=(0, h * 0.95, 0))
+    if liquido > 0.01: o.une(cilindro(r * 0.92, h * 0.7 * liquido, (90, 50, 30), n=10), pos=(0, 0.004, 0))
+    return o
+
+def nevera_abierta(abre=1.0, col=(236, 240, 246), luz=1.0):
+    """Nevera de 0,9 x 2,0 m mirando a -z con la puerta (bisagra a la derecha) abierta abre 0..1 (1 = 100°).
+    Por dentro: hueco iluminado con tres baldas (y = 0,55 / 1,0 / 1,45) y balda en la puerta. Pon cosas con baldas_xy()."""
+    o = Obj(); w, h, d = 0.9, 2.0, 0.75; t = 0.05
+    for sx in (-1, 1): o.une(caja(t, h, d, col), pos=(sx * (w / 2 - t / 2), 0, 0))
+    o.une(caja(w, t, d, col), pos=(0, h - t, 0)); o.une(caja(w, 0.12, d, col), pos=(0, 0, 0)); o.une(caja(w, h, t, col), pos=(0, 0, d / 2 - t / 2))
+    o.cara([(-w / 2 + t, 0.12, d / 2 - t - 0.001), (w / 2 - t, 0.12, d / 2 - t - 0.001), (w / 2 - t, h - t, d / 2 - t - 0.001), (-w / 2 + t, h - t, d / 2 - t - 0.001)][::-1],
+           (200, 222, 240), emis=0.12 * luz)
+    for y in (0.55, 1.0, 1.45):
+        o.une(caja(w - 2 * t, 0.02, d - t - 0.02, (210, 230, 245)), pos=(0, y, -0.01))
+    a = clamp(abre) * math.radians(100); hx, hz = w / 2, -d / 2
+    pu = caja(w, h - 0.02, 0.07, col); pu.une(caja(w - 0.12, 0.03, 0.12, (210, 230, 245)), pos=(0, 0.6, 0.09)); pu.une(caja(w - 0.12, 0.03, 0.12, (210, 230, 245)), pos=(0, 1.2, 0.09))
+    pu.une(caja(0.04, 0.5, 0.04, (170, 176, 190)), pos=(-w / 2 + 0.08, 0.8, -0.05))
+    V = np.array(pu.V); V[:, 0] -= w / 2                         # bisagra en x = +w/2 (lado derecho visto desde -z)
+    c, s = math.cos(a), math.sin(a); x2 = V[:, 0] * c - V[:, 2] * s; z2 = V[:, 0] * s + V[:, 2] * c
+    pu.V = [tuple(p) for p in np.stack([x2 + hx, V[:, 1] + 0.01, z2 + hz - 0.035], 1)]; pu._fin = None
+    o.une(pu)
+    return o
+
+def baldas_xy(i, fila):
+    """Posición (x, y, z) relativa a la nevera para el objeto i (0..3) de la balda fila (0 abajo .. 2 arriba)."""
+    return (-0.28 + 0.19 * i, (0.57, 1.02, 1.47)[fila], -0.08)
